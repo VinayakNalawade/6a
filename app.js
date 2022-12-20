@@ -132,13 +132,12 @@ app.get("/states/:stateId/stats", async (request, response) => {
   const query = `SELECT SUM(cases) AS totalCases,
     SUM(cured) AS totalCured,
     SUM(active) AS totalActive,
-    SUM(deaths) AS totalDeath
-    FROM district WHERE state_id = ${stateId} 
-    GROUP BY state_id`;
+    SUM(deaths) AS totalDeaths
+    FROM district WHERE state_id = ${stateId} ;`;
 
   let result = await db.all(query);
 
-  response.send(result);
+  response.send(result[0]);
 });
 
 //API 8
